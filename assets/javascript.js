@@ -1,16 +1,16 @@
 // Create 5 questions using the Var // 
 
 var questions = {
-    {}
-    title: "/";
-    choices: "/";
-    answer: "/";
-    };
     {
     title: "/";
     choices: "/";
     answer: "/";
-    };
+    }
+    {
+    title: "/";
+    choices: "/";
+    answer: "/";
+    }
     {
     title: "/";
     choices: "/";
@@ -25,52 +25,60 @@ var questions = {
     title: "/";
     choices: "/";
     answer: "/";
-});
+}
 
-// Variables on Score & Question Index //
+// Declared variables
 var score = 0;
 var questionIndex = 0;
 
-//Creating a Timer with Var//
+// Start working code 
+// Declared variables
 var currentTime = document.querySelector("#currentTime");
 var timer = document.querySelector("#startTime");
 var questionsDiv = document.querySelector("#questionsDiv");
 var wrapper = document.querySelector("#wrapper");
 
-// Adding Penalty and Countdown //
-var secondLefts = 76;
-// Timer Starter //
+// Seconds left is 15 seconds per question:
+var secondsLeft = 76;
+// Holds interval time
 var holdInterval = 0;
-// Stores the penalty time //
+// Holds penalty time
 var penalty = 10;
-// Create new element //
+// Creates new element
 var ulCreate = document.createElement("ul");
 
-// Timer begins and ends //
+// Triggers timer on button, shows user a display on the screen
 timer.addEventListener("click", function () {
+    // We are checking zero because its originally set to zero
     if (holdInterval === 0) {
         holdInterval = setInterval(function () {
             secondsLeft--;
             currentTime.textContent = "Time: " + secondsLeft;
-        if (secondLeft <= 0) {
-            clearInterval(holdInterval);
-            allDone();
-            currentTime.textContent = "Time's up!";
-        }
-     }, 1000);
+
+            if (secondsLeft <= 0) {
+                clearInterval(holdInterval);
+                allDone();
+                currentTime.textContent = "Time's up!";
+            }
+        }, 1000);
     }
+    render(questionIndex);
 });
-// Selecting questions and choice to page: //
-function (questionIndex) {
+
+// Renders questions and choices to page: 
+function render(questionIndex) {
+    // Clears existing data 
     questionsDiv.innerHTML = "";
-    ulCreate.innerHTML.html = "";
-    
-    for (var i = 0; < questions.length; i++) {
+    ulCreate.innerHTML = "";
+    // For loops to loop through all info in array
+    for (var i = 0; i < questions.length; i++) {
+        // Appends question title only
         var userQuestion = questions[questionIndex].title;
-        var userChoices = questions[questionIndex].choice;
+        var userChoices = questions[questionIndex].choices;
         questionsDiv.textContent = userQuestion;
     }
-    userChoices.foreach(function (newItem) {
+    // New for each for question choices
+    userChoices.forEach(function (newItem) {
         var listItem = document.createElement("li");
         listItem.textContent = newItem;
         questionsDiv.appendChild(ulCreate);
@@ -78,57 +86,59 @@ function (questionIndex) {
         listItem.addEventListener("click", (compare));
     })
 }
-// Allowing event to compare choices with your answer pick //
+// Event to compare choices with answer
 function compare(event) {
     var element = event.target;
 
-    if (element.matches ("li")) {
-        
+    if (element.matches("li")) {
+
         var createDiv = document.createElement("div");
         createDiv.setAttribute("id", "createDiv");
-        // If player picks the correct answer //
+        // Correct condition 
         if (element.textContent == questions[questionIndex].answer) {
             score++;
-            createDiv.textContent = "Correct! The answer is: " + questions[questionIndex].answer;
+            createDiv.textContent = "Correct! The answer is:  " + questions[questionIndex].answer;
+            // Correct condition 
         } else {
-            // Lose five seconds if you choose the wrong answers //
-            secondLefts = secondsLeft - penalty;
-            createDiv.textContent = "Incorrect! The correct answer is: " + questions[questionIndex].answer;
-            }
-    
-
+            // Will deduct -5 seconds off secondsLeft for wrong answers
+            secondsLeft = secondsLeft - penalty;
+            createDiv.textContent = "Wrong! The correct answer is:  " + questions[questionIndex].answer;
         }
-};
-// This informs what number of questions the player is on //
-questionIndex++;
 
-if (questionIndex >= questions.length) {
-    allDone();
-    createDiv.textContent = "End of Quiz!" + " " + "Congratulations, you got " + score + "/" + questions.length + " Correct!";
-} else {
-    return(questionIndex);
-}
+    }
+    // Question Index determines number question user is on
+    questionIndex++;
+
+    if (questionIndex >= questions.length) {
+        // All done will append last page with user stats
+        allDone();
+        createDiv.textContent = "End of quiz!" + " " + "You got  " + score + "/" + questions.length + " Correct!";
+    } else {
+        render(questionIndex);
+    }
     questionsDiv.appendChild(createDiv);
-};
 
-function allDone () {
+}
+// All done will append last page
+function allDone() {
     questionsDiv.innerHTML = "";
     currentTime.innerHTML = "";
-// Creating Header 1 //
+
+    // Heading:
     var createH1 = document.createElement("h1");
     createH1.setAttribute("id", "createH1");
-    createH1.textContent = "Finish! Let's see the results!";
+    createH1.textContent = "All Done!"
 
     questionsDiv.appendChild(createH1);
 
-    // Creating paragraph for the question // 
-
+    // Paragraph
     var createP = document.createElement("p");
     createP.setAttribute("id", "createP");
 
     questionsDiv.appendChild(createP);
 
-    if (secondLefts >=0) {
+    // Calculates time remaining and replaces it with score
+    if (secondsLeft >= 0) {
         var timeRemaining = secondsLeft;
         var createP2 = document.createElement("p");
         clearInterval(holdInterval);
@@ -137,12 +147,14 @@ function allDone () {
         questionsDiv.appendChild(createP2);
     }
 
-    var createInput = document.createElement("label");
+    // Label
+    var createLabel = document.createElement("label");
     createLabel.setAttribute("id", "createLabel");
     createLabel.textContent = "Enter your initials: ";
 
     questionsDiv.appendChild(createLabel);
 
+    // input
     var createInput = document.createElement("input");
     createInput.setAttribute("type", "text");
     createInput.setAttribute("id", "initials");
@@ -150,18 +162,40 @@ function allDone () {
 
     questionsDiv.appendChild(createInput);
 
-    var createSubmit =document.createElement("button");
+    // submit
+    var createSubmit = document.createElement("button");
     createSubmit.setAttribute("type", "submit");
     createSubmit.setAttribute("id", "Submit");
     createSubmit.textContent = "Submit";
 
     questionsDiv.appendChild(createSubmit);
 
-    // Event listener to store local storages fo Initials & scores //
+    // Event listener to capture initials and local storage for initials and score
     createSubmit.addEventListener("click", function () {
-        
-    }
+        var initials = createInput.value;
 
+        if (initials === null) {
 
-    
+            console.log("No value entered!");
+
+        } else {
+            var finalScore = {
+                initials: initials,
+                score: timeRemaining
+            }
+            console.log(finalScore);
+            var allScores = localStorage.getItem("allScores");
+            if (allScores === null) {
+                allScores = [];
+            } else {
+                allScores = JSON.parse(allScores);
+            }
+            allScores.push(finalScore);
+            var newScore = JSON.stringify(allScores);
+            localStorage.setItem("allScores", newScore);
+            // Travels to final page
+            window.location.replace("./HighScores.html");
+        }
+    });
+
 }
