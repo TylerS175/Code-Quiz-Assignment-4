@@ -8,24 +8,20 @@
     <title>Highscore Page</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="index.html">Go Back to Quiz</a>
-        </nav>
-    </header>
-    <main>
+  <!-- This is a wrapper -->
+  <div id="wrapper">
+    <!-- Div for timer -->
+    <div id="currentTime"></div>
+    <!-- Div for quiz content -->
+    <div id="questionsDiv">
         <h1>Highscores</h1>
-        <table id="highscores-chart">
-            <div>
-                <th>Rank</th>
-                <th>Score</th>
-                <th>Initials</th>
-            </div>
-        </table>
-        <div id="highscore-buttons">
-            <a href="index.html" class="back-button"><i class="back-button" aria-hidden="true"></i>Go Back</a>
-            
-        </div>
-    </main>
+        <ul id="highScore"></ul>
+        <!-- Buttons -->
+        <button id="goBack">Go Back</button>
+        <button id="clear" value="reset">Clear Highscore</button>
+    </div>
+</div>
+<script src="./assets/highscore.js"></script>
 </body>
+
 </html>

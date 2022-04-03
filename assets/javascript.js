@@ -1,37 +1,38 @@
 // Create 5 questions using the Var // 
 
-var questions = {
+var questions = [
     {
-    title: "/";
-    choices: "/";
-    answer: "/";
-    }
+    title: "What does DOM stand for?",
+    choices: ["A. Document Object Model", "B. Developer Object Model", "C. Document Over Mac", "D.Document or Media"],
+    answer: "A. Document Object Model"
+    },
     {
-    title: "/";
-    choices: "/";
-    answer: "/";
-    }
+    title: "Which of these can be used for named storage?",
+    choices: ["A. Storage", "B. Memory", "C. Variable", "D. Container"],
+    answer: "C. Variable",
+    },
     {
-    title: "/";
-    choices: "/";
-    answer: "/"
-    };
+    title: "Which of the following can to use as a loop?",
+    choices: ["A. Loop", "B. For", "C. Jump", "D. Top"],
+    answer: "B. For"
+    },
     {
-    title: "/";
-    choices: "/";
-    answer: "/";
-    };
+    title: "What code inputs actions in many places of the script?",
+    choices: ["A. Functions", "B. Insert", "C. Power", "D. Storage"],
+    answer: "A. Functions"
+    },
    {
-    title: "/";
-    choices: "/";
-    answer: "/";
-}
+    title: "Which of the following codes would you use for debugger?",
+    choices: ["A. Debugger", "B. Console.Log", "C. Inspection", "D. Journal"],
+    answer: "B. Console.Log"
+   },
+   
+];
 
 // Declared variables
 var score = 0;
 var questionIndex = 0;
 
-// Start working code 
 // Declared variables
 var currentTime = document.querySelector("#currentTime");
 var timer = document.querySelector("#startTime");
