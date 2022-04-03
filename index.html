@@ -8,8 +8,21 @@
     <title>Code Quiz</title>
 </head>
 <body>
-    
+    <!---Adding Highscores Link to Body-->
+    <a href="highscore.html">See the Highscores</a>
       
+    <div id="wrapper">
+        <!---Adding a Timer-->
+        <div id="currentTime"></div>
+        <!--Quiz Content-->
+        <div id="questionsDiv">
+            <h1>Welcome to the Code Quiz Challenge</h1>
+            <p>Try to answer the following anwsers related to Javascript within the time limit. If you choose the wrong answer just be aware your time will be deduct by ten seconds! Good luck!</p>
+            <ul id="choicesUl"></ul>
+            <!--Adding button-->
+            <button id="startTime">Start Quiz</button>
+        </div>
+    </div>
     
     <script src="./assets/javascript.js"></script>
 </body>
